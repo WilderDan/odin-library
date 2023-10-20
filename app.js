@@ -13,6 +13,11 @@ function addBookToLibrary(book) {
 
 function displayLibrary() {
   const main = document.getElementById("main");
+
+  for (let book of myLibrary) {
+    const bookCard = createBookCard(book);
+    main.appendChild(bookCard);
+  }
 }
 
 function createBookCard(book) {
@@ -20,6 +25,7 @@ function createBookCard(book) {
   bookCard.classList.add("bookCard");
 
   const titleDiv = document.createElement("div");
+  titleDiv.classList.add("bookCard__titleDiv");
   const bookCardTitle = document.createElement("h2");
   const hr = document.createElement("hr");
   bookCardTitle.classList.add("bookCard__title");
@@ -50,6 +56,7 @@ function createBookCard(book) {
   input.setAttribute("type", "checkbox");
   input.setAttribute("name", "bookCard__data__isChecked");
   input.setAttribute("id", "bookCard__data__isChecked");
+  if (book.isRead) input.setAttribute("checked", true);
 
   bookCardData.appendChild(authorLabel);
   bookCardData.appendChild(author);
@@ -61,9 +68,17 @@ function createBookCard(book) {
   bookCard.appendChild(titleDiv);
   bookCard.appendChild(bookCardData);
 
-  const main = document.getElementById("main");
-  main.appendChild(bookCard);
+  return bookCard;
 }
 
-const book = new Book("Dan", "Sample Title", 123);
-createBookCard(book);
+const book1 = new Book("First Last", "Interesting Title", 123, true);
+const book2 = new Book("Something", "Lorem", 250, false);
+const book3 = new Book(
+  "Really long author title pages text horizontaljfjhasdgfhsdagfhjgasdhjfgdashjfgghjdsagfhadsgfhjadsgfhjdsagfhjagsdfjhgasdkfgdsakjhgfkjhasdgfjhgadsjkfgadsjkfgdsak",
+  "ipsuasdfjhsadfjhgadshfgsadjhgfjhsadg fasdgf ahsdgf hjdsagfhjadgshfgadshjfghasdgfhjasdgfhjasdgfkjgsadhm",
+  2587523465972436578234758243965782346579342654329
+);
+addBookToLibrary(book1);
+addBookToLibrary(book2);
+addBookToLibrary(book3);
+displayLibrary();

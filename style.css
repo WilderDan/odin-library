@@ -17,11 +17,15 @@ header {
 }
 
 main {
-  margin: 1vh 1vw;
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .bookCard {
-  width: 250px;
+  width: 350px;
   height: 250px;
   border: 3px solid var(--gray);
   border-radius: 25px;
@@ -31,13 +35,18 @@ main {
   padding: 1vh 1vw;
   align-items: center;
   text-align: center;
-  overflow-y: scroll;
+  overflow: scroll;
+}
+
+.bookCard__titleDiv {
+  max-width: 100%;
 }
 
 .bookCard__data {
   display: grid;
+  max-width: 100%;
   grid-template-areas: "key value";
-  grid-template-columns: max-content max-content;
+  grid-template-columns: max-content auto;
   gap: 1rem;
   text-align: left;
 }
