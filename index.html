@@ -24,7 +24,7 @@
     </header>
     <main id="main">
       <dialog id="dialog">
-        <form class="dialog__form">
+        <form id="form" class="dialog__form">
           <div class="dialog__form__header">
             <h2>Add Book</h2>
             <img id="dialog__close" src="./icons/close.svg" alt="close" />
@@ -56,7 +56,6 @@
               placeholder="1"
               min="1"
               max="100000"
-              maxlength="6"
               required
             />
             <label for="form__readBefore">Read Before?</label
@@ -69,6 +68,7 @@
           <button id="submitBtn" type="submit">Submit</button>
         </form>
       </dialog>
+      <div id="library"></div>
     </main>
   </body>
 </html>

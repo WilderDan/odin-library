@@ -2,10 +2,27 @@ const myLibrary = [];
 
 const dialog = document.getElementById("dialog");
 const dialogClose = document.getElementById("dialog__close");
-
 const addBookBtn = document.getElementById("addBook");
+
 addBookBtn.addEventListener("click", (e) => {
   dialog.showModal();
+});
+
+window.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const title = e.target[0].value;
+  const author = e.target[1].value;
+  const pages = e.target[2].value;
+  const isRead = e.target[3].checked;
+
+  const book = new Book(author, title, pages, isRead);
+  addBookToLibrary(book);
+  displayLibrary();
+
+  const form = document.getElementById("form");
+  dialog.close();
+  form.reset();
 });
 
 dialogClose.addEventListener("click", (e) => {
@@ -24,11 +41,12 @@ function addBookToLibrary(book) {
 }
 
 function displayLibrary() {
-  const main = document.getElementById("main");
+  const library = document.getElementById("library");
+  removeAllChildren(library);
 
   for (let book of myLibrary) {
     const bookCard = createBookCard(book);
-    main.appendChild(bookCard);
+    library.appendChild(bookCard);
   }
 }
 
@@ -81,4 +99,8 @@ function createBookCard(book) {
   bookCard.appendChild(bookCardData);
 
   return bookCard;
+}
+
+function removeAllChildren(node) {
+  while (node.firstChild) node.removeChild(node.lastChild);
 }

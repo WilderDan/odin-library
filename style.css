@@ -17,7 +17,8 @@ header {
   text-align: center;
 }
 
-main {
+main,
+#library {
   margin: 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -79,7 +80,8 @@ button:hover {
   transform: translate(-50%, -50%);
   border: 3px solid var(--gray);
   border-radius: var(--borderRadius);
-  padding: 1vh 1vw;
+  padding: 2vh 2vw;
+  width: 350px;
 }
 
 .dialog__form {
