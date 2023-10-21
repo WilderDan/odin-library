@@ -100,8 +100,17 @@ function createBookCard(book) {
   bookCardData.appendChild(label);
   bookCardData.appendChild(input);
 
+  const deleteIcon = document.createElement("img");
+  deleteIcon.setAttribute("src", "./icons/delete.svg");
+  deleteIcon.setAttribute("alt", "delete icon");
+  deleteIcon.addEventListener("click", (e) => {
+    removeBook(book.id);
+    displayLibrary();
+  });
+
   bookCard.appendChild(titleDiv);
   bookCard.appendChild(bookCardData);
+  bookCard.appendChild(deleteIcon);
 
   return bookCard;
 }
@@ -114,6 +123,10 @@ function toggleBookRead(id) {
   let index = myLibrary.findIndex((book) => book.id === id);
   let copyBook = { ...myLibrary[index] };
   copyBook.isRead = !copyBook.isRead;
-
   myLibrary.splice(index, 1, copyBook);
+}
+
+function removeBook(id) {
+  let index = myLibrary.findIndex((book) => book.id === id);
+  myLibrary.splice(index, 1);
 }
