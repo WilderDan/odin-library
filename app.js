@@ -1,5 +1,17 @@
 const myLibrary = [];
 
+const dialog = document.getElementById("dialog");
+const dialogClose = document.getElementById("dialog__close");
+
+const addBookBtn = document.getElementById("addBook");
+addBookBtn.addEventListener("click", (e) => {
+  dialog.showModal();
+});
+
+dialogClose.addEventListener("click", (e) => {
+  dialog.close();
+});
+
 function Book(author, title, pages, isRead = false) {
   this.author = author;
   this.title = title;
@@ -70,15 +82,3 @@ function createBookCard(book) {
 
   return bookCard;
 }
-
-const book1 = new Book("First Last", "Interesting Title", 123, true);
-const book2 = new Book("Something", "Lorem", 250, false);
-const book3 = new Book(
-  "Really long author title pages text horizontaljfjhasdgfhsdagfhjgasdhjfgdashjfgghjdsagfhadsgfhjadsgfhjdsagfhjagsdfjhgasdkfgdsakjhgfkjhasdgfjhgadsjkfgadsjkfgdsak",
-  "ipsuasdfjhsadfjhgadshfgsadjhgfjhsadg fasdgf ahsdgf hjdsagfhjadgshfgadshjfghasdgfhjasdgfhjasdgfkjgsadhm",
-  2587523465972436578234758243965782346579342654329
-);
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-addBookToLibrary(book3);
-displayLibrary();
