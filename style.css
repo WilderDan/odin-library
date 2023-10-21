@@ -34,7 +34,7 @@ main,
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 1vh 1vw;
+  padding: 0;
   align-items: center;
   text-align: center;
   overflow: scroll;
@@ -62,15 +62,13 @@ main,
 button {
   border-radius: var(--borderRadius);
   padding: 1vh 1vw;
-  margin: 1vh 0;
+  margin: 2vh 0;
   border: 0;
   background-color: #9400ff;
   color: white;
-}
-
-button:hover {
   font-weight: bold;
-  border: 1px solid black;
+  border: 1px solid #000000;
+  box-shadow: 2px 4px black;
 }
 
 #dialog {
@@ -78,7 +76,7 @@ button:hover {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border: 3px solid var(--gray);
+  border: 3px solid black;
   border-radius: var(--borderRadius);
   padding: 2vh 2vw;
   width: 350px;

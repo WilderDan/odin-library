@@ -1,4 +1,5 @@
 const myLibrary = [];
+let currentBookId = 0;
 
 const dialog = document.getElementById("dialog");
 const dialogClose = document.getElementById("dialog__close");
@@ -16,7 +17,7 @@ window.addEventListener("submit", (e) => {
   const pages = e.target[2].value;
   const isRead = e.target[3].checked;
 
-  const book = new Book(author, title, pages, isRead);
+  const book = new Book(author, title, pages, isRead, ++currentBookId);
   addBookToLibrary(book);
   displayLibrary();
 
@@ -29,11 +30,12 @@ dialogClose.addEventListener("click", (e) => {
   dialog.close();
 });
 
-function Book(author, title, pages, isRead = false) {
+function Book(author, title, pages, isRead, id) {
   this.author = author;
   this.title = title;
   this.pages = pages;
   this.isRead = isRead;
+  this.id = id;
 }
 
 function addBookToLibrary(book) {
@@ -87,6 +89,9 @@ function createBookCard(book) {
   input.setAttribute("name", "bookCard__data__isChecked");
   input.setAttribute("id", "bookCard__data__isChecked");
   if (book.isRead) input.setAttribute("checked", true);
+  input.addEventListener("click", (e) => {
+    toggleBookRead(book.id);
+  });
 
   bookCardData.appendChild(authorLabel);
   bookCardData.appendChild(author);
@@ -103,4 +108,12 @@ function createBookCard(book) {
 
 function removeAllChildren(node) {
   while (node.firstChild) node.removeChild(node.lastChild);
+}
+
+function toggleBookRead(id) {
+  let index = myLibrary.findIndex((book) => book.id === id);
+  let copyBook = { ...myLibrary[index] };
+  copyBook.isRead = !copyBook.isRead;
+
+  myLibrary.splice(index, 1, copyBook);
 }
