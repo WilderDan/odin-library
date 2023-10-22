@@ -38,6 +38,10 @@ function Book(author, title, pages, isRead, id) {
   this.id = id;
 }
 
+Book.prototype.toggleIsRead = function () {
+  this.isRead = !this.isRead;
+};
+
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
@@ -90,7 +94,7 @@ function createBookCard(book) {
   input.setAttribute("id", "bookCard__data__isChecked");
   if (book.isRead) input.setAttribute("checked", true);
   input.addEventListener("click", (e) => {
-    toggleBookRead(book.id);
+    book.toggleIsRead();
   });
 
   bookCardData.appendChild(authorLabel);
@@ -117,13 +121,6 @@ function createBookCard(book) {
 
 function removeAllChildren(node) {
   while (node.firstChild) node.removeChild(node.lastChild);
-}
-
-function toggleBookRead(id) {
-  let index = myLibrary.findIndex((book) => book.id === id);
-  let copyBook = { ...myLibrary[index] };
-  copyBook.isRead = !copyBook.isRead;
-  myLibrary.splice(index, 1, copyBook);
 }
 
 function removeBook(id) {
